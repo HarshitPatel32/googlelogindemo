@@ -1,8 +1,11 @@
 import React from "react";
-import { signIn } from "next-auth/react";
+import { signIn, useSession, signOut } from "next-auth/react";
 import Image from "next/image";
 
 const GoogleLogin = () => {
+  const { data: session } = useSession();
+  const user = session?.session?.user;
+
   const handleSignInWithGoogle = async () => {
     signIn("google");
   };
@@ -17,6 +20,7 @@ const GoogleLogin = () => {
           Continue with Google
         </p>
       </div>
+      <label>{user?.email}</label>
     </section>
   );
 };
