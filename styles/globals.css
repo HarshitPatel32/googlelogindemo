@@ -97,7 +97,7 @@ body {
 .buttonsection {
   display: flex;
   align-items: center;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   height: 100vh;
   width: 100vw;
@@ -131,5 +131,11 @@ body {
         }
       }
     }
+  }
+  .logout {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
   }
 }
