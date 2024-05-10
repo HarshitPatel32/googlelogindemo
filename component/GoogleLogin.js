@@ -20,10 +20,12 @@ const GoogleLogin = () => {
           Continue with Google
         </p>
       </div>
-      <div className="logout">
-        <label>{user?.email}</label>
-        <button onClick={() => signOut({ redirect: false })}>Logout</button>
-      </div>
+      {user && (
+        <div className="logout">
+          <label>{user?.email}</label>
+          <button onClick={() => signOut({ redirect: false })}>Logout</button>
+        </div>
+      )}
     </section>
   );
 };
