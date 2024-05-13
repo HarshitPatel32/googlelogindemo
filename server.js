@@ -3,13 +3,16 @@ const { parse } = require("url");
 const next = require("next");
 const fs = require("fs");
 const dev = false;
-const hostname = "googlelogindemo.netlify.app";
+// const hostname = "googlelogindemo.netlify.app";
+const hostname = "alphatechsoftware.co.in";
 const port = 3000;
 const app = next({ dev, hostname, port });
 const handle = app.getRequestHandler();
 const allowedHosts = [
   "googlelogindemo.netlify.app",
   "www.googlelogindemo.netlify.app",
+  "alphatechsoftware.co.in",
+  "www.alphatechsoftware.co.in"
 ];
 
 const invalidHttpMethod = [
