@@ -14,7 +14,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "www.abc.com",
+        hostname: "googlelogindemo.netlify.app",
         port: "",
         pathname: "/**",
       },
