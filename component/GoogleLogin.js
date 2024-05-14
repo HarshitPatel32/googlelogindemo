@@ -10,6 +10,10 @@ const GoogleLogin = () => {
     signIn("google");
   };
 
+  const handleSignInWithMicrosoft = async () => {
+    signIn("azure-ad");
+  };
+
   return (
     <section className="buttonsection">
       <div className="google" onClick={handleSignInWithGoogle}>
@@ -18,6 +22,14 @@ const GoogleLogin = () => {
             <Image src="/images/Google.svg" alt="Google" width={24} height={24} />
           </span>
           Continue with Google
+        </p>
+      </div>
+      <div className="microsoft" onClick={handleSignInWithMicrosoft}>
+        <p className="text">
+          <span className="icon">
+            <Image src="/images/Microsoft.svg" alt="Microsoft" width={24} height={24} />
+          </span>
+          Continue with Microsoft
         </p>
       </div>
       {user && (
