@@ -22,7 +22,7 @@ const GoogleLog = () => {
             }
           )
           .then((res) => {
-            console.log(res);
+            console.log(res.data.email, res.data.name, res.data.picture);
           })
           .catch((err) => console.log(err));
       }
