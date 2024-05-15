@@ -9,10 +9,10 @@ const GoogleLog = () => {
   const user = session?.session?.user;
 
   const handleSignInWithGoogle = useGoogleLogin({
-    onSuccess: (codeResponse) => {
+    onSuccess: async (codeResponse) => {
       if (codeResponse && codeResponse.access_token) {
-        axios
-          .get(
+        try {
+          const res = await axios.get(
             `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${codeResponse.access_token}`,
             {
               headers: {
@@ -20,20 +20,27 @@ const GoogleLog = () => {
                 Accept: "application/json",
               },
             }
-          )
-          .then(async (res) => {
-            console.log(res.data.email, res.data.name, res.data.picture);
-            const signInResult = await signIn("credentials", {
-              email: res.data.email,
-              password: "",
-              redirect: false,
-            });
-            console.log(signInResult);
-          })
-          .catch((err) => console.log(err));
+          );
+
+          const signInResult = await signIn("credentials", {
+            email: res.data.email,
+            password: "", // Usually a token or some secure value, not empty string
+            redirect: false,
+          });
+
+          if (signInResult?.error) {
+            console.error("Sign in failed:", signInResult.error);
+          } else {
+            console.log("Sign in successful");
+          }
+        } catch (error) {
+          console.error("Error fetching user info:", error);
+        }
       }
     },
-    onError: (error) => console.log("Login Failed:", error),
+    onError: (error) => {
+      console.error("Login Failed:", error);
+    },
   });
 
   return (
