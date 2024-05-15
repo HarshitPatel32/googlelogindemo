@@ -3,7 +3,7 @@ import { signIn, useSession, signOut } from "next-auth/react";
 import { GoogleLogin } from "@react-oauth/google";
 import Image from "next/image";
 
-const GoogleLogin = () => {
+const GoogleLog = () => {
   const { data: session } = useSession();
   const user = session?.session?.user;
 

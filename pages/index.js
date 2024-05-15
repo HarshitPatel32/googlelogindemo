@@ -1,10 +1,10 @@
-import GoogleLogin from "@/component/GoogleLogin";
+import GoogleLog from "@/component/GoogleLog";
 
 const Home = () => {
   return (
     <>
       <main>
-        <GoogleLogin />
+        <GoogleLog />
       </main>
     </>
   );
