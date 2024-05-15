@@ -36,10 +36,6 @@ const GoogleLog = () => {
     onError: (error) => console.log("Login Failed:", error),
   });
 
-  const handleSignInWithMicrosoft = async () => {
-    signIn("azure-ad");
-  };
-
   return (
     <section className="buttonsection">
       <div className="google" onClick={handleSignInWithGoogle}>
@@ -50,14 +46,14 @@ const GoogleLog = () => {
           Continue with Google
         </p>
       </div>
-      <div className="microsoft" onClick={handleSignInWithMicrosoft}>
+      {/* <div className="microsoft">
         <p className="text">
           <span className="icon">
             <Image src="/images/Microsoft.svg" alt="Microsoft" width={24} height={24} />
           </span>
           Continue with Microsoft
         </p>
-      </div>
+      </div> */}
       {user && (
         <div className="logout">
           <label>{user?.email}</label>
