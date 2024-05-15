@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { signIn, useSession, signOut } from "next-auth/react";
+import { GoogleLogin } from "@react-oauth/google";
 import Image from "next/image";
 
 const GoogleLogin = () => {
@@ -14,8 +15,19 @@ const GoogleLogin = () => {
     signIn("azure-ad");
   };
 
+  const handleSuccess = (response) => {
+    console.log("Login Success:", response);
+  };
+
+  const handleError = (error) => {
+    console.error("Login Failed:", error);
+  };
+
   return (
     <section className="buttonsection">
+      <div className="google" onClick={handleSignInWithGoogle}>
+        <GoogleLogin onSuccess={handleSuccess} onError={handleError} />
+      </div>
       <div className="google" onClick={handleSignInWithGoogle}>
         <p className="text">
           <span className="icon">
