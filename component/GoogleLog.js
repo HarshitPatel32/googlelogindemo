@@ -54,4 +54,4 @@ const GoogleLog = () => {
   );
 };
 
-export default GoogleLogin;
+export default GoogleLog;
