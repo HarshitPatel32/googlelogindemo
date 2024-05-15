@@ -9,6 +9,7 @@ const GoogleLog = () => {
   const user = session?.session?.user;
 
   const handleSignInWithGoogle = useGoogleLogin({
+    flow: 'auth-code',
     onSuccess: async (codeResponse) => {
       if (codeResponse && codeResponse.access_token) {
         try {
