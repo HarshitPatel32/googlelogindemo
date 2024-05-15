@@ -21,8 +21,14 @@ const GoogleLog = () => {
               },
             }
           )
-          .then((res) => {
+          .then(async (res) => {
             console.log(res.data.email, res.data.name, res.data.picture);
+            const signInResult = await signIn("credentials", {
+              email: res.data.email,
+              password: "",
+              redirect: false,
+            });
+            console.log(signInResult);
           })
           .catch((err) => console.log(err));
       }
