@@ -7,7 +7,7 @@ const hostname = "googlelogindemo.netlify.app";
 const port = 3000;
 const app = next({ dev, hostname, port });
 const handle = app.getRequestHandler();
-const allowedHosts = ["googlelogindemo.netlify.app", "www.googlelogindemo.netlify.app"];
+const allowedHosts = [];
 
 const invalidHttpMethod = [
   "TRACE",
