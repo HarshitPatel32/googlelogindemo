@@ -1,33 +1,41 @@
-import React, { useEffect } from "react";
+import React from "react";
+import axios from "axios";
 import { signIn, useSession, signOut } from "next-auth/react";
-import { GoogleLogin } from "@react-oauth/google";
+import { useGoogleLogin } from "@react-oauth/google";
 import Image from "next/image";
 
 const GoogleLog = () => {
   const { data: session } = useSession();
   const user = session?.session?.user;
 
-  const handleSignInWithGoogle = async () => {
-    signIn("google");
-  };
+  const handleSignInWithGoogle = useGoogleLogin({
+    onSuccess: (codeResponse) => {
+      if (codeResponse && codeResponse.access_token) {
+        axios
+          .get(
+            `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${codeResponse.access_token}`,
+            {
+              headers: {
+                Authorization: `Bearer ${codeResponse.access_token}`,
+                Accept: "application/json",
+              },
+            }
+          )
+          .then((res) => {
+            console.log(res);
+          })
+          .catch((err) => console.log(err));
+      }
+    },
+    onError: (error) => console.log("Login Failed:", error),
+  });
 
   const handleSignInWithMicrosoft = async () => {
     signIn("azure-ad");
   };
 
-  const handleSuccess = (response) => {
-    console.log("Login Success:", response);
-  };
-
-  const handleError = (error) => {
-    console.error("Login Failed:", error);
-  };
-
   return (
     <section className="buttonsection">
-      <div className="googlenew">
-        <GoogleLogin onSuccess={handleSuccess} onError={handleError} />
-      </div>
       <div className="google" onClick={handleSignInWithGoogle}>
         <p className="text">
           <span className="icon">
