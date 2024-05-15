@@ -67,7 +67,7 @@ const securityHeaders = [
   },
   {
     key: 'Cross-Origin-Opener-Policy',
-    value: 'same-origin',
+    value: 'unsafe-none',
   },
   {
     key: 'Cross-Origin-Embedder-Policy',
