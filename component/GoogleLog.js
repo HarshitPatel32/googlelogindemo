@@ -25,7 +25,9 @@ const GoogleLog = () => {
 
   return (
     <section className="buttonsection">
-      <GoogleLogin onSuccess={handleSuccess} onError={handleError} />
+      <div className="googlenew">
+        <GoogleLogin onSuccess={handleSuccess} onError={handleError} />
+      </div>
       <div className="google" onClick={handleSignInWithGoogle}>
         <p className="text">
           <span className="icon">

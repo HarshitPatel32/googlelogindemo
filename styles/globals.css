@@ -164,6 +164,9 @@ body {
       }
     }
   }
+  .googlenew {
+    margin-bottom: 20px;
+  }
   .logout {
     display: flex;
     align-items: center;
