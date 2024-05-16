@@ -1,47 +1,47 @@
 import React from "react";
 import axios from "axios";
 import { signIn, useSession, signOut } from "next-auth/react";
-import { GoogleLogin, useGoogleLogin } from "@react-oauth/google";
+import { GoogleLogin } from "@react-oauth/google";
 import Image from "next/image";
 
 const GoogleLog = () => {
   const { data: session } = useSession();
   const user = session?.session?.user;
 
-  const handleSignInWithGoogle = useGoogleLogin({
-    onSuccess: async (codeResponse) => {
-      if (codeResponse && codeResponse.access_token) {
-        try {
-          const res = await axios.get(
-            `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${codeResponse.access_token}`,
-            {
-              headers: {
-                Authorization: `Bearer ${codeResponse.access_token}`,
-                Accept: "application/json",
-              },
-            }
-          );
+  // const handleSignInWithGoogle = useGoogleLogin({
+  //   onSuccess: async (codeResponse) => {
+  //     if (codeResponse && codeResponse.access_token) {
+  //       try {
+  //         const res = await axios.get(
+  //           `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${codeResponse.access_token}`,
+  //           {
+  //             headers: {
+  //               Authorization: `Bearer ${codeResponse.access_token}`,
+  //               Accept: "application/json",
+  //             },
+  //           }
+  //         );
 
-          const signInResult = await signIn("credentials", {
-            email: res.data.email,
-            password: "",
-            redirect: false,
-          });
+  //         const signInResult = await signIn("credentials", {
+  //           email: res.data.email,
+  //           password: "",
+  //           redirect: false,
+  //         });
 
-          if (signInResult?.error) {
-            console.error("Sign in failed:", signInResult.error);
-          } else {
-            console.log("Sign in successful");
-          }
-        } catch (error) {
-          console.error("Error fetching user info:", error);
-        }
-      }
-    },
-    onError: (error) => {
-      console.error("Login Failed:", error);
-    },
-  });
+  //         if (signInResult?.error) {
+  //           console.error("Sign in failed:", signInResult.error);
+  //         } else {
+  //           console.log("Sign in successful");
+  //         }
+  //       } catch (error) {
+  //         console.error("Error fetching user info:", error);
+  //       }
+  //     }
+  //   },
+  //   onError: (error) => {
+  //     console.error("Login Failed:", error);
+  //   },
+  // });
 
   const handleSuccess = (response) => {
     console.log(response);
@@ -53,14 +53,6 @@ const GoogleLog = () => {
 
   return (
     <section className="buttonsection">
-      <div className="google" onClick={handleSignInWithGoogle}>
-        <p className="text">
-          <span className="icon">
-            <Image src="/images/Google.svg" alt="Google" width={24} height={24} />
-          </span>
-          Continue with Google
-        </p>
-      </div>
       <GoogleLogin onSuccess={handleSuccess} onError={handleError} />
       {user && (
         <div className="logout">
