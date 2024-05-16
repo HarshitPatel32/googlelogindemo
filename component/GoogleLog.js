@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { signIn, useSession, signOut } from "next-auth/react";
-import { useGoogleLogin } from "@react-oauth/google";
+import { GoogleLogin, useGoogleLogin } from "@react-oauth/google";
 import Image from "next/image";
 
 const GoogleLog = () => {
@@ -43,6 +43,14 @@ const GoogleLog = () => {
     },
   });
 
+  const handleSuccess = (response) => {
+    console.log(response);
+  };
+
+  const handleError = () => {
+    console.log("Login Failed");
+  };
+
   return (
     <section className="buttonsection">
       <div className="google" onClick={handleSignInWithGoogle}>
@@ -53,6 +61,7 @@ const GoogleLog = () => {
           Continue with Google
         </p>
       </div>
+      <GoogleLogin onSuccess={handleSuccess} onError={handleError} />
       {/* <div className="microsoft">
         <p className="text">
           <span className="icon">
