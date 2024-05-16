@@ -8,6 +8,7 @@ const GoogleLog = () => {
 
   const handleSuccess = async (response) => {
     const data = decodeJwtResponse(response.credential);
+    console.log(data);
     if (data && data.email) {
       try {
         const signInResult = await signIn("credentials", {
