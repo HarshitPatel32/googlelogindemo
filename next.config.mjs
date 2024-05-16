@@ -1,6 +1,6 @@
 const nextConfig = {
   reactStrictMode: false,
-  trailingSlash: false,
+  trailingSlash: true,
   swcMinify: true,
   i18n: {
     locales: ["en"],

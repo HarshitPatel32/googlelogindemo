@@ -45,7 +45,6 @@ const GoogleLog = () => {
 
   const handleSuccess = (response) => {
     console.log(response);
-    console.log("Current Origin:", window.location.origin);
   };
 
   const handleError = () => {
