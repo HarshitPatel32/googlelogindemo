@@ -19,6 +19,7 @@ const GoogleLog = () => {
 
   const handleSignInWithGoogle = useGoogleLogin({
     onSuccess: async (codeResponse) => {
+      console.log(codeResponse);
       if (codeResponse && codeResponse.access_token) {
         try {
           const res = await axios.get(
