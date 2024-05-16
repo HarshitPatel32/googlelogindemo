@@ -70,7 +70,7 @@ const GoogleLog = () => {
           Continue with Google
         </p>
       </div> */}
-      <GoogleLogin
+      {/* <GoogleLogin
         onSuccess={handleSuccess}
         onFailure={handleError}
         useOneTap
@@ -84,6 +84,14 @@ const GoogleLog = () => {
             </p>
           </div>
         )}
+      /> */}
+      <GoogleLogin
+        clientId="738272769394-ar32r2u6pgnl8ejtkrvojh7k6drnfkk8.apps.googleusercontent.com"
+        text="Continue with Google"
+        onSuccess={handleSuccess}
+        onFailure={handleError}
+        useOneTap
+        use_fedcm_for_prompt
       />
       {/* <div className="microsoft">
         <p className="text">
