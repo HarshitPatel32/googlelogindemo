@@ -1,7 +1,6 @@
 import React from "react";
-import axios from "axios";
 import { signIn, useSession, signOut } from "next-auth/react";
-import { GoogleLogin, useGoogleLogin, useGoogleOneTapLogin } from "@react-oauth/google";
+import { GoogleLogin } from "@react-oauth/google";
 import Image from "next/image";
 
 const GoogleLog = () => {
@@ -74,6 +73,7 @@ const GoogleLog = () => {
       <GoogleLogin
         onSuccess={handleSuccess}
         onFailure={handleError}
+        useOneTap
         render={() => (
           <div className="google">
             <p className="text">
