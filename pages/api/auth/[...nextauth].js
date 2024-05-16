@@ -16,7 +16,7 @@ const decodeJwtResponse = (token) => {
   // return JSON.parse(jsonPayload);
 
   let buffer = Buffer.from(base64, "base64");
-  decodedPayload = JSON.parse(buffer.toString("utf-8"));
+  let decodedPayload = JSON.parse(buffer.toString("utf-8"));
   return decodedPayload;
 };
 
