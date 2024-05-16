@@ -8,6 +8,15 @@ const GoogleLog = () => {
   const { data: session } = useSession();
   const user = session?.session?.user;
 
+  useGoogleOneTapLogin({
+    onSuccess: credentialResponse => {
+      console.log(credentialResponse);
+    },
+    onError: () => {
+      console.log('Login Failed');
+    },
+  });
+
   const handleSignInWithGoogle = useGoogleLogin({
     onSuccess: async (codeResponse) => {
       if (codeResponse && codeResponse.access_token) {
@@ -43,13 +52,13 @@ const GoogleLog = () => {
     },
   });
 
-  const handleSuccess = (response) => {
-    console.log(response);
-  };
+  // const handleSuccess = (response) => {
+  //   console.log(response);
+  // };
 
-  const handleError = () => {
-    console.log("Login Failed");
-  };
+  // const handleError = () => {
+  //   console.log("Login Failed");
+  // };
 
   return (
     <section className="buttonsection">
@@ -61,7 +70,7 @@ const GoogleLog = () => {
           Continue with Google
         </p>
       </div>
-      <GoogleLogin onSuccess={handleSuccess} onError={handleError} useOneTap />
+      {/* <GoogleLogin onSuccess={handleSuccess} onError={handleError} /> */}
       {/* <div className="microsoft">
         <p className="text">
           <span className="icon">
