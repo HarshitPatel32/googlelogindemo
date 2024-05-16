@@ -58,9 +58,26 @@ const GoogleLog = () => {
     return JSON.parse(jsonPayload);
   };
 
-  const handleSuccess = (response) => {
+  const handleSuccess = async (response) => {
     console.log(response.credential);
-    console.log(decodeJwtResponse(response.credential));
+    const data = decodeJwtResponse(response.credential);
+    if (data && data.email) {
+      try {
+        const signInResult = await signIn("credentials", {
+          email: data.email,
+          password: "",
+          redirect: false,
+        });
+
+        if (signInResult?.error) {
+          console.error("Sign in failed:", signInResult.error);
+        } else {
+          console.log("Sign in successful");
+        }
+      } catch (error) {
+        console.error("Error fetching user info:", error);
+      }
+    }
   };
 
   const handleError = () => {
