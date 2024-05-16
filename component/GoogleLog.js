@@ -70,28 +70,14 @@ const GoogleLog = () => {
           Continue with Google
         </p>
       </div> */}
-      {/* <GoogleLogin
-        onSuccess={handleSuccess}
-        onFailure={handleError}
-        useOneTap
-        render={() => (
-          <div className="google">
-            <p className="text">
-              <span className="icon">
-                <Image src="/images/Google.svg" alt="Google" width={24} height={24} />
-              </span>
-              Continue with Google
-            </p>
-          </div>
-        )}
-      /> */}
       <GoogleLogin
-        clientId="738272769394-ar32r2u6pgnl8ejtkrvojh7k6drnfkk8.apps.googleusercontent.com"
-        text="Continue with Google"
         onSuccess={handleSuccess}
         onFailure={handleError}
         useOneTap
-        use_fedcm_for_prompt
+        shape="pill"
+        theme="outline"
+        size="large"
+        text="continue_with"
       />
       {/* <div className="microsoft">
         <p className="text">
