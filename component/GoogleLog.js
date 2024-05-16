@@ -1,7 +1,6 @@
 import React from "react";
 import { signIn, useSession, signOut } from "next-auth/react";
 import { GoogleLogin } from "@react-oauth/google";
-import Image from "next/image";
 
 const GoogleLog = () => {
   const { data: session } = useSession();
@@ -69,7 +68,7 @@ const GoogleLog = () => {
   };
 
   const handleSuccess = (response) => {
-    console.log(decodeJwtResponse(response));
+    console.log(decodeJwtResponse(response.Credential));
   };
 
   const handleError = () => {
@@ -78,14 +77,6 @@ const GoogleLog = () => {
 
   return (
     <section className="buttonsection">
-      {/* <div className="google">
-        <p className="text">
-          <span className="icon">
-            <Image src="/images/Google.svg" alt="Google" width={24} height={24} />
-          </span>
-          Continue with Google
-        </p>
-      </div> */}
       <GoogleLogin
         onSuccess={handleSuccess}
         onFailure={handleError}
@@ -94,16 +85,8 @@ const GoogleLog = () => {
         theme="outline"
         size="large"
         text="continue_with"
-        width="800"
+        width="400"
       />
-      {/* <div className="microsoft">
-        <p className="text">
-          <span className="icon">
-            <Image src="/images/Microsoft.svg" alt="Microsoft" width={24} height={24} />
-          </span>
-          Continue with Microsoft
-        </p>
-      </div> */}
       {user && (
         <div className="logout">
           <label>{user?.email}</label>
