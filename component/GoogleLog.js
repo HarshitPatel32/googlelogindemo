@@ -1,5 +1,4 @@
-import React from "react";
-import axios from "axios";
+import React, { useEffect } from "react";
 import { signIn, useSession, signOut } from "next-auth/react";
 import { GoogleLogin, useGoogleOneTapLogin } from "@react-oauth/google";
 
