@@ -46,7 +46,7 @@ const GoogleOneTapSignIn = () => {
     initializeGoogleOneTap();
   }, []);
 
-  return <div id="google-signin-button"></div>;
+  return <div id="google-signin-button">click</div>;
 };
 
 export default GoogleOneTapSignIn;
