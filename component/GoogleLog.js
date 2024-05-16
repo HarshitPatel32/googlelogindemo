@@ -82,11 +82,11 @@ const GoogleLog = () => {
         onSuccess={handleSuccess}
         onFailure={handleError}
         // useOneTap
-        shape="pill"
-        theme="outline"
-        size="large"
-        text="continue_with"
-        width="400"
+        // shape="pill"
+        // theme="outline"
+        // size="large"
+        // text="continue_with"
+        // width="400"
       />
       {user && (
         <div className="logout">
