@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { signIn, useSession, signOut } from "next-auth/react";
-import { GoogleLogin, useGoogleLogin } from "@react-oauth/google";
+import { GoogleLogin, useGoogleLogin, useGoogleOneTapLogin } from "@react-oauth/google";
 import Image from "next/image";
 
 const GoogleLog = () => {
@@ -61,7 +61,7 @@ const GoogleLog = () => {
           Continue with Google
         </p>
       </div>
-      <GoogleLogin onSuccess={handleSuccess} onError={handleError} />
+      <GoogleLogin onSuccess={handleSuccess} onError={handleError} useOneTap />
       {/* <div className="microsoft">
         <p className="text">
           <span className="icon">
