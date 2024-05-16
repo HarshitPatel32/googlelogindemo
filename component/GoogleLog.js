@@ -2,7 +2,6 @@ import React from "react";
 import axios from "axios";
 import { signIn, useSession, signOut } from "next-auth/react";
 import { GoogleLogin } from "@react-oauth/google";
-import Image from "next/image";
 
 const GoogleLog = () => {
   const { data: session } = useSession();
@@ -44,7 +43,7 @@ const GoogleLog = () => {
   // });
 
   const handleSuccess = (response) => {
-    console.log(response);
+    console.log(response.credential);
   };
 
   const handleError = () => {
@@ -53,7 +52,7 @@ const GoogleLog = () => {
 
   return (
     <section className="buttonsection">
-      <GoogleLogin onSuccess={handleSuccess} onError={handleError} />
+      <GoogleLogin onSuccess={handleSuccess} onError={handleError} useOneTap />
       {user && (
         <div className="logout">
           <label>{user?.email}</label>
