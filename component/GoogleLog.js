@@ -68,6 +68,7 @@ const GoogleLog = () => {
   };
 
   const handleSuccess = (response) => {
+    console.log(response.Credential);
     console.log(decodeJwtResponse(response.Credential));
   };
 
