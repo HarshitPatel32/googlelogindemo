@@ -7,7 +7,7 @@ const GoogleLog = () => {
   const user = session?.session?.user;
 
   const handleSuccess = async (response) => {
-    if (data && data.email) {
+    if (response) {
       try {
         const signInResult = await signIn("credentials", {
           credential: response.credential,
