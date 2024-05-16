@@ -81,7 +81,7 @@ const GoogleLog = () => {
       <GoogleLogin
         onSuccess={handleSuccess}
         onFailure={handleError}
-        // useOneTap
+        useOneTap
         // shape="pill"
         // theme="outline"
         // size="large"
