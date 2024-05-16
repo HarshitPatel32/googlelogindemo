@@ -8,70 +8,83 @@ const GoogleLog = () => {
   const { data: session } = useSession();
   const user = session?.session?.user;
 
-  useGoogleOneTapLogin({
-    onSuccess: credentialResponse => {
-      console.log(credentialResponse);
-    },
-    onError: () => {
-      console.log('Login Failed');
-    },
-  });
+  // useGoogleOneTapLogin({
+  //   onSuccess: credentialResponse => {
+  //     console.log(credentialResponse);
+  //   },
+  //   onError: () => {
+  //     console.log('Login Failed');
+  //   },
+  // });
 
-  const handleSignInWithGoogle = useGoogleLogin({
-    onSuccess: async (codeResponse) => {
-      console.log(codeResponse);
-      if (codeResponse && codeResponse.access_token) {
-        try {
-          const res = await axios.get(
-            `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${codeResponse.access_token}`,
-            {
-              headers: {
-                Authorization: `Bearer ${codeResponse.access_token}`,
-                Accept: "application/json",
-              },
-            }
-          );
+  // const handleSignInWithGoogle = useGoogleLogin({
+  //   onSuccess: async (codeResponse) => {
+  //     console.log(codeResponse);
+  //     if (codeResponse && codeResponse.access_token) {
+  //       try {
+  //         const res = await axios.get(
+  //           `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${codeResponse.access_token}`,
+  //           {
+  //             headers: {
+  //               Authorization: `Bearer ${codeResponse.access_token}`,
+  //               Accept: "application/json",
+  //             },
+  //           }
+  //         );
 
-          const signInResult = await signIn("credentials", {
-            email: res.data.email,
-            password: "",
-            redirect: false,
-          });
+  //         const signInResult = await signIn("credentials", {
+  //           email: res.data.email,
+  //           password: "",
+  //           redirect: false,
+  //         });
 
-          if (signInResult?.error) {
-            console.error("Sign in failed:", signInResult.error);
-          } else {
-            console.log("Sign in successful");
-          }
-        } catch (error) {
-          console.error("Error fetching user info:", error);
-        }
-      }
-    },
-    onError: (error) => {
-      console.error("Login Failed:", error);
-    },
-  });
+  //         if (signInResult?.error) {
+  //           console.error("Sign in failed:", signInResult.error);
+  //         } else {
+  //           console.log("Sign in successful");
+  //         }
+  //       } catch (error) {
+  //         console.error("Error fetching user info:", error);
+  //       }
+  //     }
+  //   },
+  //   onError: (error) => {
+  //     console.error("Login Failed:", error);
+  //   },
+  // });
 
-  // const handleSuccess = (response) => {
-  //   console.log(response);
-  // };
+  const handleSuccess = (response) => {
+    console.log(response);
+  };
 
-  // const handleError = () => {
-  //   console.log("Login Failed");
-  // };
+  const handleError = () => {
+    console.log("Login Failed");
+  };
 
   return (
     <section className="buttonsection">
-      <div className="google" onClick={handleSignInWithGoogle}>
+      {/* <div className="google">
         <p className="text">
           <span className="icon">
             <Image src="/images/Google.svg" alt="Google" width={24} height={24} />
           </span>
           Continue with Google
         </p>
-      </div>
-      {/* <GoogleLogin onSuccess={handleSuccess} onError={handleError} /> */}
+      </div> */}
+      <GoogleLogin
+        onSuccess={handleSuccess}
+        onFailure={handleError}
+        render={() => (
+          <div className="google">
+            <p className="text">
+              <span className="icon">
+                <Image src="/images/Google.svg" alt="Google" width={24} height={24} />
+              </span>
+              Continue with Google
+            </p>
+          </div>
+        )}
+      />
       {/* <div className="microsoft">
         <p className="text">
           <span className="icon">
