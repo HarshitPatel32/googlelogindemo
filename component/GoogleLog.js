@@ -7,14 +7,18 @@ const GoogleLog = () => {
   const { data: session } = useSession();
   const user = session?.session?.user;
 
-  useGoogleOneTapLogin({
-    onSuccess: (credentialResponse) => {
-      handleSuccess(credentialResponse);
-    },
-    onError: () => {
-      handleError();
-    },
-  });
+  useEffect(() => {
+    if (!user) {
+      useGoogleOneTapLogin({
+        onSuccess: (credentialResponse) => {
+          handleSuccess(credentialResponse);
+        },
+        onError: () => {
+          handleError();
+        },
+      });
+    }
+  }, [user]);
 
   // const handleSignInWithGoogle = useGoogleLogin({
   //   onSuccess: async (codeResponse) => {
