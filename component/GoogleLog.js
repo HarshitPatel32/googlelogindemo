@@ -1,19 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { signIn, useSession, signOut } from "next-auth/react";
-import { GoogleLogin, useGoogleOneTapLogin } from "@react-oauth/google";
+import { GoogleLogin } from "@react-oauth/google";
 
 const GoogleLog = () => {
   const { data: session } = useSession();
   const user = session?.session?.user;
-
-  useGoogleOneTapLogin({
-    onSuccess: (credentialResponse) => {
-      handleSuccess(credentialResponse);
-    },
-    onError: () => {
-      handleError();
-    },
-  });
 
   const handleSuccess = async (response) => {
     const data = decodeJwtResponse(response.credential);
