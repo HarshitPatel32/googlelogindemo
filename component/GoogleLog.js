@@ -1,34 +1,12 @@
-import React, { useEffect } from "react";
+import React from "react";
 import axios from "axios";
 import { signIn, useSession, signOut } from "next-auth/react";
 import { useGoogleLogin } from "@react-oauth/google";
 import Image from "next/image";
 
 const GoogleLog = () => {
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
   const user = session?.session?.user;
-
-  useEffect(() => {
-    if (status === "unauthenticated") {
-      if (window.FedCM) {
-        const federatedCredentialsRequest = async () => {
-          const credential = await navigator.credentials.get({
-            federated: {
-              providers: ["https://accounts.google.com"],
-            },
-          });
-
-          if (credential) {
-            signIn("google", { credential });
-          }
-        };
-
-        federatedCredentialsRequest();
-      } else {
-        console.warn("FedCM API is not supported in this browser");
-      }
-    }
-  }, [status]);
 
   const handleSignInWithGoogle = useGoogleLogin({
     onSuccess: async (codeResponse) => {
@@ -46,7 +24,7 @@ const GoogleLog = () => {
 
           const signInResult = await signIn("credentials", {
             email: res.data.email,
-            password: "", // Usually a token or some secure value, not empty string
+            password: "",
             redirect: false,
           });
 
