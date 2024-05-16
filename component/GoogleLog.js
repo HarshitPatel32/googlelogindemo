@@ -6,16 +6,14 @@ const GoogleLog = () => {
   const { data: session } = useSession();
   const user = session?.session?.user;
 
-  if (!user) {
-    useGoogleOneTapLogin({
-      onSuccess: (credentialResponse) => {
-        handleSuccess(credentialResponse);
-      },
-      onError: () => {
-        handleError();
-      },
-    });
-  }
+  useGoogleOneTapLogin({
+    onSuccess: (credentialResponse) => {
+      handleSuccess(credentialResponse);
+    },
+    onError: () => {
+      handleError();
+    },
+  });
 
   const handleSuccess = async (response) => {
     const data = decodeJwtResponse(response.credential);
